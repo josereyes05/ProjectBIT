@@ -17,9 +17,11 @@ server.use(express.json())
 //no se te olvide que no puedes hacer esto arriba porque esto existira antes que el server jaj
 //llamamos e importamos la ruta de los users
 const userRoutes = require('./routes/userRoutes')
+const hechizosRoutes = require('./routes/hechizosRoutes')
 
 //aqui ya usamos las rutas :)
 server.use('/users/', userRoutes)
+server.use('/hechizos/', hechizosRoutes)
 
 server.get('/', (req, res) => {
     /*En el '/' hacemos una peticion a la raiz osea el index.js :)
