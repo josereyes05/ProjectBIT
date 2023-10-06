@@ -1,0 +1,44 @@
+<header>
+<nav class="navbar navbar-expand-lg bg-info-subtle">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/gatico.png" alt="gato" width="50" height="40">
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+        </li>
+        <ng-container *ngIf="loginservice.isLogged(); else logged">
+          <!-- aqui si esta loggeado va a mostrar lo de abajo 
+          lo que es como *ngIf es como una directriz paaaa validar si esta
+          o no loggeado-->
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/hechizos">hechizos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" (click)="loginservice.logOut()">logout</a>
+            <!-- el click es como el onClick pero de angular :)-->
+          </li>
+        </ng-container>
+        <ng-template #logged>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/login">login</a>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
+</header>
