@@ -31,7 +31,19 @@ const hecCont = {
             if(oneHec) res.json({msg: oneHec});
             
             else throw new Error ('Usuario no encontrado :(');
+
+        } catch (error) {
+            res.json({error: error.message || error});
+        }
+    },
+    readN: async (req, res) => {
+        try {
+            const oneHec = await HecModel.findOne({nombre: req.params.nombre});
             
+            if(oneHec) res.json({msg: oneHec});
+            
+            else throw new Error ('Usuario no encontrado :(');
+
         } catch (error) {
             res.json({error: error.message || error});
         }

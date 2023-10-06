@@ -9,8 +9,9 @@ const hechizos = Router()
 /*creamos las rutas :)*/
 hechizos.post('/', hecCont.AddHec)
 hechizos.get('/', hecCont.readAll)
-hechizos.get('/:id', hecCont.readOne)
+hechizos.get('/id/:id', hecCont.readOne)
 hechizos.put('/:id', hecCont.actHec)
+hechizos.get('/:nombre', hecCont.readN)
 hechizos.delete('/:id', hecCont.delHec)
 
 
