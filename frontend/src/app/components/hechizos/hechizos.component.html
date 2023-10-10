@@ -1,3 +1,119 @@
 <app-top></app-top>
-<main>hechizos works!</main>
+<main class="h-100">
+  <div class="d-flex w-100 justify-content-evenly ">
+    <div class="w-50">
+      <form
+        class="w-100 ms-3 pt-4"
+        #spellsForm="ngForm"
+        (ngSubmit)="handleSubmithec(spellsForm)"
+      >
+        <!--la funcion se cambio de nombre de addHec a handleSubmithec pa que cuando
+      se actualize o se vaya a crear se cambie o varie-->
+        <input
+          type="hidden"
+          name="_id"
+          [(ngModel)]="hechizosService.selectedHec._id"
+        />
+        <!--esto es pa vincular el id con to papi-->
+        <div class="mb-3">
+          <label for="nombre" class="form-label text-warning"
+            >Nombre del Hechizo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="nombre"
+            name="nombre"
+            autocomplete="off"
+            [(ngModel)]="hechizosService.selectedHec.nombre"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="efecto" class="form-label text-warning"
+            >Descripción</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="efecto"
+            name="efecto"
+            autocomplete="off"
+            [(ngModel)]="hechizosService.selectedHec.efecto"
+          />
+        </div>
+
+        <ng-container *ngIf="hechizosService.selectedHec._id; else create">
+          <div class="mb-3 form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="checkmortal"
+              name="mortal"
+              [(ngModel)]="hechizosService.selectedHec.mortal"
+            />
+            <label class="form-check-label text-warning" for="checkmortal"
+              >Mortal <i class="bi bi-crosshair2"></i>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-success">
+            Actualizar <i class="bi bi-magic"></i>
+          </button>
+        </ng-container>
+
+        <ng-template #create>
+          <div class="mb-3 form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="checkmortal"
+              name="mortal"
+              [(ngModel)]="hechizosService.selectedHec.mortal"
+            />
+            <label class="form-check-label text-warning" for="checkmortal"
+              >Mortal <i class="bi bi-crosshair2"></i>
+            </label>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Guardar <i class="bi bi-magic"></i>
+          </button>
+        </ng-template>
+      </form>
+    </div>
+    <img src="../../../assets/gatoH.png" style="height: 300px;" alt="gatico" />
+  </div>
+  <div class="w-100 mt-list">
+    <div class="d-flex w-100 justify-content-evenly">
+      <img src="../../../assets/elpato.png" alt="">
+      <div class="w-50">
+    <h5 class="text-center text-info">Todos los hechizos</h5>
+    <ul
+      *ngFor="let hec of hechizosService.hechizos"
+      class="list-group w-100 ms-3"
+    >
+      <li class="list-group-item mb-3 d-flex justify-content-between">
+        <div>
+          {{ hec.nombre }}
+          <i class="bi bi-stars"></i>
+        </div>
+        <div>
+          <button class="btn btn-primary me-3" (click)="editHec(hec)">
+            Editar
+          </button>
+          <!-- en el (click) damos la funcion del ts y decimos que tiene que pedir :)-->
+          <button class="btn btn-danger" (click)="delHec(hec._id)">
+            Eliminar
+          </button>
+          <!--en este solo pedimos el _id recuerda el como hiciste el backend lo que pedias 
+          pa cada funcion va?-->
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</main>
+<!--el name en los input es el nombre de los datos en el schema :)-->
+<!--el [(ngModel)]="hechizosService.selectedHec." es pa conectar los input con los datos
+    en selectedHec y poder hacer la peticion en el backend-->
 <app-bottom></app-bottom>

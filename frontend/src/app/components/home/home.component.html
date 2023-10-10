@@ -1,12 +1,25 @@
 <app-top></app-top>
 <main>
     <div class="d-flex justify-content-evenly">
-        <div class="d-flex justify-content-center flex-column">
-            <h1 class="text-warning">
-                Crea y guarda Hechizos
-                <i class="bi bi-moon-stars-fill"></i>
-            </h1>
-        </div>
+        <ng-container *ngIf="loginservice.isLogged(); else logged">
+            <div class="d-flex justify-content-center flex-column">
+                <h1 class="text-warning">
+                    Crea y guarda <a class="text-warning" href="/hechizos">Hechizos</a>
+                    <i class="bi bi-moon-stars-fill ms-1"></i>
+                </h1>
+            </div>
+        </ng-container>  
+        <ng-template #logged>
+            <div class="d-flex justify-content-center flex-column">
+                <h1 class="text-warning">
+                    Crea y guarda Hechizos
+                    <i class="bi bi-moon-stars-fill"></i>
+                    <br><hr>
+                    <h2>Haz click <a class="text-warning" href="/login">aquí</a>
+                        para iniciar sesión</h2>                    
+                </h1>
+            </div>
+        </ng-template>      
         <div>
             <img src="../../../assets/gato2.png" alt="">
         </div>

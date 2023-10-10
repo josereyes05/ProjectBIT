@@ -19,7 +19,7 @@ const hecCont = {
     readAll: async (req, res) => {
         try {
             const readAll = await HecModel.find();
-            res.json({msg: readAll});
+            res.json({allHechizos: readAll});
         } catch (error) {
             res.json({error});
         }
