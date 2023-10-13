@@ -50,7 +50,6 @@ export class HechizosComponent {
   getAllHec(){
     this.hechizosService.readAllHec().subscribe(
       (res) => {
-        console.log(res.allHechizos);
         this.hechizosService.hechizos = res.allHechizos
         //asignale al arreglo lo que esta en el res.allHechizos
       },
@@ -68,7 +67,7 @@ export class HechizosComponent {
     /*id es un string pero pon el any para que no tire mas errores en un futuro*/
     this.hechizosService.deleteHec(id).subscribe(
       (res) => {
-        this.toastr.error(`se eliminó: ${id}`, 'eliminación')
+        this.toastr.show(`se eliminó: ${id}`, 'eliminación')
         this.getAllHec()
       },
       (err) => {
@@ -84,7 +83,7 @@ export class HechizosComponent {
           form.reset();
           this.getAllHec();
           console.log('res: ', res)
-          this.toastr.info(`Actualizadisisisisimo`)
+          this.toastr.info('Esta actualizadisisisisisimo')
         },
         (err) => {
           console.log(err);
@@ -92,10 +91,11 @@ export class HechizosComponent {
       )
     } else{
         
-      if(!this.hechizosService.selectedHec.nombre || !this.hechizosService.selectedHec.efecto){
+      if(!this.hechizosService.selectedHec.nombre 
+        || !this.hechizosService.selectedHec.efecto){
         this.toastr.error('Todos los campos son necesrios', 'error')
       }else{
-        this.toastr.success('agregado', this.hechizosService.selectedHec.nombre)
+          this.toastr.success('agregado', this.hechizosService.selectedHec.nombre)
         this.hechizosService.createHec(form.value).subscribe(
           (res)=>{
           console.log('res: ', res);
@@ -117,5 +117,15 @@ export class HechizosComponent {
         })
       }
     }
+  }
+
+  resetForm(form : NgForm){
+    form.reset()
+    this.hechizosService.selectedHec = {
+      nombre: '',
+      efecto: '',
+      mortal: false
+    },
+    this.getAllHec()
   }
 }

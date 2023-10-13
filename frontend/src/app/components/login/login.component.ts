@@ -1,4 +1,4 @@
-import { Token } from '@angular/compiler';
+
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
@@ -34,6 +34,7 @@ export class LoginComponent {
         //aqui llamamos con metodos osea lo (sd.sda.sa) y en subscribe la respuesta:) 
         (res) => {
           if(res.token){
+            console.log(res.token);
           localStorage.setItem("token", res.token)
           /*aqui estamos guardando en el sistema el token :)
           el localStorage va a pares así ("token", res.token)*/
