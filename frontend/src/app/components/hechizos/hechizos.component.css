@@ -10,3 +10,41 @@ main{
 .mt-list{
     margin-top: 4%;
 }
+input{
+    border-style: none;
+}
+
+@media (max-width: 924px){
+    .in-bus{
+    display:flexbox !important;
+    flex-direction: column;
+    align-items: center !important;
+    }
+}
+
+@media (max-width: 798px){
+    .elpato{
+        height: 400px !important;
+    }
+}
+@media (max-width: 628px){
+    .elpato{
+        display: none;
+    }
+}
+@media (max-width: 546px){
+    .c-in{
+        display: flex;
+        justify-content: center;
+    }
+    .buscarHec{
+        height: 26px;
+        align-self: center;
+    }
+    
+    @media (max-width: 454px){
+        img{
+            display: none;
+        }
+    }
+}

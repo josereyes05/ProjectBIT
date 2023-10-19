@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { HechizosService } from '../../services/hechizos.service';
@@ -35,7 +35,7 @@ export class HechizosComponent {
         Llamas a la funcion de llamarlas todas para que cuando la guardes la 
         veas enseguida
 
-         el subscribe esta reciviendo esto 
+        el subscribe esta reciviendo esto 
         return this.http.post(this.urlBackend, hechizo)
         y si sale bien da a res y se sale mal da a err :)
         asocialo a una promesa de js con el .then y el .catch
@@ -59,6 +59,22 @@ export class HechizosComponent {
     )
   }
 
+  getOne(nombre: string){
+    this.hechizosService.readOneHec(nombre).subscribe(
+      (res) => {
+        this.hechizosService.hechizos = res.msg
+        if(!nombre) {
+          this.toastr.warning('Introduce algun hechizo bro');
+          this.getAllHec()
+        }
+        console.log(res);
+      },
+      (err) => {
+        console.log('err: ', err);
+      }
+    )
+  }
+
   editHec(hec: any){
     this.hechizosService.selectedHec = hec
   }
@@ -69,6 +85,7 @@ export class HechizosComponent {
       (res) => {
         this.toastr.show(`se eliminó: ${id}`, 'eliminación')
         this.getAllHec()
+        location.reload()
       },
       (err) => {
         console.log(err);
@@ -99,6 +116,12 @@ export class HechizosComponent {
         this.hechizosService.createHec(form.value).subscribe(
           (res)=>{
           console.log('res: ', res);
+          if(res){
+            this.toastr.success('agregado', this.hechizosService.selectedHec.nombre)
+          }else{
+            this.toastr.error('no agregado', this.hechizosService.selectedHec.nombre)
+          }
+
           this.getAllHec()
           /*Llamas a la funcion de llamarlas todas para que cuando la guardes la 
           veas enseguida*/
@@ -127,5 +150,5 @@ export class HechizosComponent {
       mortal: false
     },
     this.getAllHec()
-  }
+  } 
 }

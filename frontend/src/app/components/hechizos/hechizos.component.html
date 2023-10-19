@@ -56,7 +56,7 @@
             </label>
           </div>
 
-          <button type="submit" class="btn btn-success" (click)="editHec">
+          <button type="submit" class="btn btn-success" (click)="(editHec)">
             Actualizar <i class="bi bi-magic"></i>
           </button>
         </ng-container>
@@ -78,7 +78,11 @@
             Guardar <i class="bi bi-magic"></i>
           </button>
         </ng-template>
-        <button type="reset" class="btn btn-warning ms-3" (click)="resetForm(spellsForm)">
+        <button
+          type="reset"
+          class="btn btn-warning ms-3"
+          (click)="resetForm(spellsForm)"
+        >
           Limpiar
         </button>
       </form>
@@ -87,36 +91,114 @@
   </div>
   <div class="w-100 mt-list">
     <div class="d-flex w-100 justify-content-evenly">
-      <img src="../../../assets/elpato.png" style="height: 600px" alt="" />
+      <img
+        src="../../../assets/elpato.png"
+        class="elpato"
+        style="height: 600px"
+        alt=""
+      />
       <div class="w-50">
         <h5 class="text-center text-info">Todos los hechizos</h5>
+        <div
+          class="d-flex justify-content-center align-items-center my-4 in-bus"
+        >
+          <label for="buscarHec" class="me-3 text-warning"
+            >Busca tu hechizo:</label
+          >
+          <div class="c-in">
+            <input
+              type="search"
+              name="buscarHec"
+              [(ngModel)]="hechizosService.selectedHec.nombre"
+              class="li text-warning rounded text-center buscarHec"
+              id="buscarHec"
+            />
+          </div>
+        </div>
+
         <div class="d-flex w-100 row justify-content-center">
-          <div *ngFor="let hec of hechizosService.hechizos" class="col-6">
-            <div>
+          <div
+            *ngFor="let hec of hechizosService.hechizos"
+            class="col-lg-6 col-md-10 col-sm-12"
+          >
+            <div *ngIf="!hechizosService.selectedHec.nombre 
+            || hec.nombre === hechizosService.selectedHec.nombre">
               <div>
-                <div class="li card h-100 my-1 mx-1 col-auto">
+                <div
+                  class="li card h-100 my-1 mx-1 col-auto border border-warning border-3"
+                >
                   <div class="card-body">
-                    <h5 class="card-title"><i class="bi bi-stars"></i> {{ hec.nombre }} 
-                    <i class="bi bi-stars"></i></h5>
-                    <p class="card-text"><i class="bi bi-stars"></i>
-                      {{ hec.efecto }}<i class="bi bi-stars"></i>
+                    <h5 class="card-title">
+                      <i class="bi bi-stars"></i> {{ hec.nombre }}
+                      <i class="bi bi-stars"></i>
+                    </h5>
+                    <p class="card-text">
+                      <i class="bi bi-stars"></i> {{ hec.efecto
+                      }}<i class="bi bi-stars"></i>
                     </p>
-                    <ng-container *ngIf="hec.mortal === true; else nomort" >
-                      <p><i class="bi bi-stars"></i> Es mortal 
-                      <i class="bi bi-emoji-dizzy-fill"></i></p>
+                    <ng-container *ngIf="hec.mortal === true; else nomort">
+                      <p>
+                        <i class="bi bi-stars"></i> Es mortal
+                        <i class="bi bi-emoji-dizzy-fill"></i>
+                      </p>
                     </ng-container>
                     <ng-template #nomort>
-                      <p><i class="bi bi-stars"></i> No es mortal 
-                      <i class="bi bi-emoji-laughing-fill"></i></p>
+                      <p>
+                        <i class="bi bi-stars"></i> No es mortal
+                        <i class="bi bi-emoji-laughing-fill"></i>
+                      </p>
                     </ng-template>
                     <button class="btn btn-primary me-3" (click)="editHec(hec)">
                       Editar
                     </button>
                     <!-- en el (click) damos la funcion del ts
                     y decimos que tiene que pedir :)-->
-                    <button class="btn btn-danger" (click)="delHec(hec._id)">
+                    <button
+                      class="btn btn-danger"
+                      id="eliminar"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                    >
                       Eliminar
                     </button>
+
+                    <div
+                      class="modal fade"
+                      id="exampleModal"
+                      tabindex="-1"
+                      aria-labelledby="exampleModalLabel"
+                      aria-hidden="true"
+                    >
+                      <div class="modal-dialog">
+                        <div class="modal-content li border-3 border-warning">
+                          <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Eliminación
+                            </h1>
+                          </div>
+                          <div class="modal-body">
+                            ¿Estás segur@ que quieres eliminarlo 
+                            {{hec.nombre}}? ಠ_ರೃ
+                          </div>
+                          <div class="modal-footer">
+                            <button
+                              type="button"
+                              class="btn btn-warning"
+                              data-bs-dismiss="modal"
+                            >
+                              Cancelar
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-danger"
+                              (click)="delHec(hec._id)"
+                            >
+                              Eliminar
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

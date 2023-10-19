@@ -37,6 +37,10 @@ export class HechizosService {
     return this.http.get<any>(this.urlBackend)
     //hacemos la peticion al back
   }
+
+  readOneHec(nombre : string){
+    return this.http.get<any>(`${this.urlBackend}/${nombre}`)
+  }
   
   updateHec(hechizo: Hechizos){
     return this.http.put(`${this.urlBackend}/${hechizo._id}`, hechizo)

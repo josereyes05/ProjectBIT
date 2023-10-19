@@ -1,7 +1,43 @@
-
 main{
     /* 
     background-color: blueviolet; */
     height: 650px;
     background-image: url('../../../assets/fondo.jpg');
+}
+@media (max-width: 663px){
+    img{
+        height: 300px !important;
+    }
+}
+@media (max-width: 784px) {
+    input{
+        margin-left: 10px;
+    }
+    img{
+        height: 350px !important;
+    }
+}
+@media (max-width: 690px){
+    input{
+        margin-left: 20px;
+    }
+    img{
+        height: 300px !important;
+    }
+}
+@media (max-width: 595px){
+    main{
+        display: flexbox !important;
+        flex-direction: column !important;
+        align-items: center ;
+        justify-content: center;
+    }
+    .c-todo{
+        width: 100% !important;
+
+    }
+    input{
+        width: 100%;
+        margin: 0;
+    }
 }

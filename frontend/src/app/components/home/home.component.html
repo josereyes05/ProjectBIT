@@ -1,8 +1,8 @@
 <app-top></app-top>
 <main>
-    <div class="d-flex justify-content-evenly">
+    <div class="d-flex justify-content-evenly align-items-center h-100 c-home">
         <ng-container *ngIf="loginservice.isLogged(); else logged">
-            <div class="d-flex justify-content-center flex-column">
+            <div class="d-flex justify-content-center flex-column t-home">
                 <h1 class="text-warning">
                     Crea y guarda <a class="text-warning" href="/hechizos">Hechizos</a>
                     <i class="bi bi-moon-stars-fill ms-1"></i>
@@ -10,7 +10,7 @@
             </div>
         </ng-container>  
         <ng-template #logged>
-            <div class="d-flex justify-content-center flex-column">
+            <div class="d-flex justify-content-center flex-column t-home">
                 <h1 class="text-warning">
                     Crea y guarda Hechizos
                     <i class="bi bi-moon-stars-fill"></i>

@@ -7,13 +7,30 @@ const hecCont = {
         try {
             const {nombre, efecto, mortal} = req.body
 
-            const Hecadd = new HecModel ({nombre, efecto, mortal});
+            const exname = await HecModel.findOne({'nombre' : nombre})
+            const exef = await HecModel.findOne({'efecto': efecto})
 
-            const HecAdded = await Hecadd.save();
-
-            res.json({msg: 'Agregadisisisisimo '});
+            if(exname || exef){
+                res.status(400).send(
+                    {
+                        msg: `Ups el efecto o el nombre ya existe :(`,
+                        ok: false
+                    })
+            }else{
+                const Hecadd = new HecModel ({nombre, efecto, mortal});
+                const HecAdded = await Hecadd.save();    
+                res.status(201).send(
+                    {
+                        msg: 'Agregadisisisisimo',
+                        ok: true
+                    });
+            }
         } catch (error) {
-            res.json({msg: error});
+            res.status(500).json(
+                {
+                    msg: error,
+                    ok: false
+                });
         }
     },
     readAll: async (req, res) => {
@@ -31,18 +48,17 @@ const hecCont = {
             if(oneHec) res.json({msg: oneHec});
             
             else throw new Error ('Usuario no encontrado :(');
-
         } catch (error) {
             res.json({error: error.message || error});
         }
     },
     readN: async (req, res) => {
         try {
-            const oneHec = await HecModel.findOne({nombre: req.params.nombre});
-            
+            const oneHec = await HecModel.findOne({"nombre": req.params.nombre});
+
             if(oneHec) res.json({msg: oneHec});
             
-            else throw new Error ('Usuario no encontrado :(');
+            else throw new Error ('Hechizo no encontrado :(');
 
         } catch (error) {
             res.json({error: error.message || error});

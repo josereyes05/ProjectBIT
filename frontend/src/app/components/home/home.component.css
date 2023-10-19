@@ -1,4 +1,42 @@
 main{
     background-image: url(../../../assets/fondo.jpg);
-    height: 650px;
+    height: 660px;
+}
+
+@media (max-width: 922px) {
+    .c-home{
+        display: flex;
+        margin-left: 100px;
+        text-align: center;
+    }
+}
+@media (max-width: 735px){
+    /* img{
+        display: none;
+    } */
+    main{
+        display: flex;
+        justify-content: space-around;
+    }
+    .c-home{
+        display: flexbox !important;
+        flex-direction: column;
+        display: flex;
+        justify-content: center !important;
+        margin-left: 0;
+        text-align: center;
+    }
+    .t-home{
+        margin-top: 100px;
+        margin-bottom: -50px;
+    }
+    img{
+        height: 300px;
+    }
+
+    @media (max-width: 360px) {
+        .c-home{
+            text-align: center;
+        }
+    }
 }
