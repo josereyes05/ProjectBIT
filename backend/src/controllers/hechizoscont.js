@@ -11,7 +11,7 @@ const hecCont = {
             const exef = await HecModel.findOne({'efecto': efecto})
 
             if(exname || exef){
-                res.status(400).send(
+                res.status(400).json(
                     {
                         msg: `Ups el efecto o el nombre ya existe :(`,
                         ok: false

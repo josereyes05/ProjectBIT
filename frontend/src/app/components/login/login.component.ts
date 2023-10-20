@@ -42,7 +42,7 @@ export class LoginComponent {
           const decoded = this.jwtHelper.decodeToken(res.token)
           //aqui cogemos el token y lo decodificamos pa poder saludar con usrname :)
           
-          this.toastr.success(`Hi ${decoded.name}!`, 'welcome!')
+          this.toastr.success('bienvenido!', `Holaa ${decoded.name}!`)
           //esto es para saludar si todo sale bien
           
           this.router.navigate(['/hechizos'])

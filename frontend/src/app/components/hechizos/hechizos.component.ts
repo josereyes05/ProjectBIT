@@ -143,15 +143,14 @@ export class HechizosComponent {
         || !this.hechizosService.selectedHec.efecto){
         this.toastr.error('Todos los campos son necesrios', 'error')
       }else{
-          this.toastr.success('agregado', this.hechizosService.selectedHec.nombre)
         this.hechizosService.createHec(form.value).subscribe(
           (res)=>{
           console.log('res: ', res);
-          if(res){
+          /*if(res){
             this.toastr.success('agregado', this.hechizosService.selectedHec.nombre)
           }else{
             this.toastr.error('no agregado', this.hechizosService.selectedHec.nombre)
-          }
+          }*/
 
           this.getAllHec()
           /*Llamas a la funcion de llamarlas todas para que cuando la guardes la 
@@ -168,6 +167,7 @@ export class HechizosComponent {
         },
         (err)=>{
           console.log('err: ', err);
+          this.toastr.error(err.error.msg)
         })
       }
     }

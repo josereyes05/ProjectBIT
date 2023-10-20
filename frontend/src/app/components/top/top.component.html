@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="">Home</a>
+          <a class="nav-link active" aria-current="page" routerLink="">Inicio</a>
         </li>
         <ng-container *ngIf="loginservice.isLogged(); else logged">
           <!-- aqui si esta loggeado va a mostrar lo de abajo 
@@ -28,13 +28,13 @@
             <a class="nav-link active" routerLink="/hechizos">hechizos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" (click)="loginservice.logOut()">logout</a>
+            <a class="nav-link active" (click)="loginservice.logOut()">Cerrar sesión</a>
             <!-- el click es como el onClick pero de angular :)-->
           </li>
         </ng-container>
         <ng-template #logged>
           <li class="nav-item">
-            <a class="nav-link active" routerLink="/login">login</a>
+            <a class="nav-link active" routerLink="/login">Iniciar sesión</a>
           </li>
         </ng-template>
       </ul>
