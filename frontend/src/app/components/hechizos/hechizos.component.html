@@ -120,6 +120,7 @@
           <div
             *ngFor="let hec of hechizosService.hechizos"
             class="col-lg-6 col-md-10 col-sm-12"
+
           >
             <div *ngIf="!hechizosService.selectedHec.nombre 
             || hec.nombre === hechizosService.selectedHec.nombre">
@@ -156,49 +157,10 @@
                     <button
                       class="btn btn-danger"
                       id="eliminar"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
+                      (click)="delHec(hec._id)"
                     >
                       Eliminar
                     </button>
-
-                    <div
-                      class="modal fade"
-                      id="exampleModal"
-                      tabindex="-1"
-                      aria-labelledby="exampleModalLabel"
-                      aria-hidden="true"
-                    >
-                      <div class="modal-dialog">
-                        <div class="modal-content li border-3 border-warning">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">
-                              Eliminación
-                            </h1>
-                          </div>
-                          <div class="modal-body">
-                            ¿Estás segur@ que quieres eliminarlo 
-                            {{hec.nombre}}? ಠ_ರೃ
-                          </div>
-                          <div class="modal-footer">
-                            <button
-                              type="button"
-                              class="btn btn-warning"
-                              data-bs-dismiss="modal"
-                            >
-                              Cancelar
-                            </button>
-                            <button
-                              type="button"
-                              class="btn btn-danger"
-                              (click)="delHec(hec._id)"
-                            >
-                              Eliminar
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

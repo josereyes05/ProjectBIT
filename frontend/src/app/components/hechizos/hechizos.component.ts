@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { HechizosService } from '../../services/hechizos.service';
+import Swal from 'sweetalert2';
+
 /* pa usar las funciones pa llamar al backend
 ps llamamos al service que fue donde hicimos esas funciones :)*/
 
@@ -11,9 +13,14 @@ ps llamamos al service que fue donde hicimos esas funciones :)*/
   styleUrls: ['./hechizos.component.css']
 })
 export class HechizosComponent {
+  hecQueEli : string | any;
   constructor(
     public hechizosService: HechizosService,
-    private toastr: ToastrService,) {}
+    private toastr: ToastrService,) {
+      this.hecQueEli = '';
+      //le damo qui valo a la variable :)
+    }
+
   
     ngOnInit(): void{
       this.getAllHec();
@@ -81,16 +88,40 @@ export class HechizosComponent {
 
   delHec(id: string | any){
     /*id es un string pero pon el any para que no tire mas errores en un futuro*/
-    this.hechizosService.deleteHec(id).subscribe(
-      (res) => {
-        this.toastr.show(`se eliminó: ${id}`, 'eliminación')
-        this.getAllHec()
-        location.reload()
-      },
-      (err) => {
-        console.log(err);
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: "Si lo quieres de vuelta crealo de nuevo :(",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DC3545',
+      cancelButtonColor: '#FFC107',
+      confirmButtonText: 'Sipi, eliminalo :)',
+      background: '#5C246F url(../../../assets/fondo.jpg)',
+      color: '#ffff00c7'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: 'Eliminadisimo',
+          text: "Tu hechizo fue eliminado :(",
+          icon: 'error',
+          background: '#5C246F url(../../../assets/fondo.jpg)',
+          color: '#ffff00c7'
+        })
+        this.hechizosService.deleteHec(id).subscribe(
+          (res) => {
+            this.toastr.show(`se eliminó: ${id}`, 'eliminación')
+            this.getAllHec()       
+          },
+          (err) => {
+            console.log(err);
+          }
+        )
       }
-    )
+    }) 
+  }
+
+  confDel(hec_id: string | any){
+    this.hecQueEli = hec_id
   }
 
   handleSubmithec(form: NgForm){
