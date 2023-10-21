@@ -146,12 +146,8 @@ export class HechizosComponent {
         this.hechizosService.createHec(form.value).subscribe(
           (res)=>{
           console.log('res: ', res);
-          /*if(res){
-            this.toastr.success('agregado', this.hechizosService.selectedHec.nombre)
-          }else{
-            this.toastr.error('no agregado', this.hechizosService.selectedHec.nombre)
-          }*/
-
+          this.toastr.success('agregado', this.hechizosService.selectedHec.nombre)
+          
           this.getAllHec()
           /*Llamas a la funcion de llamarlas todas para que cuando la guardes la 
           veas enseguida*/
