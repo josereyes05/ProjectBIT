@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+      - '27017'
+    volumes:
+      - mongodata:/data/db
+    networks:
+      - app-network
+  backend:
+    depends_on:
+    - mongo
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - '8080:8080'
+    environment:
+      - mongo=mongodb+srv://josereyes16:soyyo_123@mongodb-dia1.nulipjz.mongodb.net/proyectoBIT
+    networks:
+      - app-network
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - '4200:4200'
+    networks:
+      - app-network
+volumes:
+  mongodata:
+networks:
+  app-network:
+    driver: bridge 

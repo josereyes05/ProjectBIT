@@ -1,6 +1,0 @@
-FROM -
-WORKDIR /src
-
-RUN npm install
-CMD [ "ng", "serve"]
-EXPOSE 4000
