@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 //luego vamos a comparar con la contra ya exsistente :) soooooo lo necesitamos va?
 
 const UserModel = require('../models/usrMod');
@@ -22,25 +22,25 @@ const loginCont = {
                     /*en este comparamos la contra dada en el login 
                     con la de la base de datos*/
                     password, userFound.password
-                )
-                if(isValid){
-                    //validamos si la contra es buena:)
-                    const token = await getToken({
-                        //damos el payload al token para ser creado :)
-                        id: userFound._id,
-                        name: userFound.name
-                    })
-                    res.json(token)
-                }else{
+                    )
+                    if(isValid){
+                        //validamos si la contra es buena:)
+                        const token = await getToken({
+                            //damos el payload al token para ser creado :)
+                            id: userFound._id,
+                            name: userFound.name
+                        })
+                        return res.json({token, kk:'holi'})
+                    }else{
                     res.json({msg: 'Error en credenciales'})
-                }
+                    }
             } else {
                 res.json({msg: 'Error en credenciales'})
             }
+            res.json({msg: 'hola'})
         } catch (error) {
-            res.json({msg: error})
+            console.log(error);
         }
     }
 };
-
 module.exports=loginCont;

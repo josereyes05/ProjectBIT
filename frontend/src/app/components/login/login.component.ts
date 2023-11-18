@@ -29,18 +29,17 @@ export class LoginComponent {
         this.toastr.info('Todas los campos son necesrios', 'ojo!')
         //el toastr es pa unos avisos o alerts mas bonitos
       }else{
-        
       this.loginservise.login(this.user).subscribe(
         //aqui llamamos con metodos osea lo (sd.sda.sa) y en subscribe la respuesta:) 
         (res) => {
           if(res.token){
-            console.log(res.token);
-          localStorage.setItem("token", res.token)
-          /*aqui estamos guardando en el sistema el token :)
-          el localStorage va a pares así ("token", res.token)*/
-          
-          const decoded = this.jwtHelper.decodeToken(res.token)
-          //aqui cogemos el token y lo decodificamos pa poder saludar con usrname :)
+            localStorage.setItem("token", res.token.token)
+            /*aqui estamos guardando en el sistema el token :)
+            el localStorage va a pares así ("token", res.token)*/
+            
+            const decoded = this.jwtHelper.decodeToken(res.token.token)
+            //aqui cogemos el token y lo decodificamos pa poder saludar con usrname :)
+            console.log(res.token.token);
           
           this.toastr.success('bienvenido!', `Holaa ${decoded.name}!`)
           //esto es para saludar si todo sale bien

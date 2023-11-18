@@ -12,7 +12,7 @@ export class HechizosService {
 
   constructor(private http: HttpClient) { }
 
-  urlBackend: string = 'http://127.0.0.1:6996/hechizos/';
+  urlBackend: string = 'http://18.191.177.104:8080/hechizos/';
   /* aqui ponemos la peticion a la api */
 
   hechizos: Hechizos[] = [];

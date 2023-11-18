@@ -2,7 +2,7 @@
 const UserModel = require("../models/usrMod");
 
 //importamo bcrypt pa eencriptar algunos datos :)
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const { response } = require("express");
 //importamos el generador del token :)
@@ -13,13 +13,11 @@ const userControllers = {
     try {
         /*pedimos del req.body los datos del {} eso es pa que 
         la constante tome solo esos datos en caso de haber mas so tomaria esos;)*/
-    const {
-        name, lastname, nickname, email, password, 
+    const {name, lastname, nickname, email, password, 
         phone, gender, pronouns, birthday} = req.body
         
         /* aqui vamos a encriptar o hashear la contraseña :) */
         const hashpassword = await bcrypt.hash(password, 8);
-        
         const newUser = new UserModel({
             name: name,
             lastname: lastname,
