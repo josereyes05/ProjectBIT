@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,12 @@ export class LoginService {
   esto de arriba es como una clase que tiene la funcion http que 
   nos ayuda a hacer la peticion al backend*/
 
+
   login(user: any){
     /*esta funcion sirve pa hacer la consulta al Backend
     el post es un metodo del http :)
     el user es lo que vamos a recibir del login :)*/
-    return this.http.post<any>('http://18.191.177.104:8080/login/', user);
+    return this.http.post<any>(`${environment.urlBackend}/login/`, user);
   }
 
   isLogged() {
