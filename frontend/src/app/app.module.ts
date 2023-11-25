@@ -17,6 +17,7 @@ import { HechizosComponent } from './components/hechizos/hechizos.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TopComponent } from './components/top/top.component';
 import { BottomComponent } from './components/bottom/bottom.component';
+import { LecHecComponent } from './components/lec.hec/lec.hec.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { BottomComponent } from './components/bottom/bottom.component';
     HechizosComponent,
     PageNotFoundComponent,
     TopComponent,
-    BottomComponent
+    BottomComponent,
+    LecHecComponent
   ],
   imports: [
     BrowserModule,
