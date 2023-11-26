@@ -12,7 +12,7 @@ export class Hechizos {
         los nombres de los objetos tienen que ser iguales que en el postman
         */
     }
-    _id?:string;
+    _id?:any;
     nombre:string;
     efecto:string;
     mortal:boolean;

@@ -1,3 +1,3 @@
 export const environment = {
-    urlBackend: 'http://localhost:8080'
+    urlB: 'http://localhost:8080'
 };

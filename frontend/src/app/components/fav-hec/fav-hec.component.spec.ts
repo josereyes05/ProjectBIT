@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LecHecComponent } from './lec.hec.component';
+import { FavHecComponent } from './fav-hec.component';
 
-describe('LecHecComponent', () => {
-  let component: LecHecComponent;
-  let fixture: ComponentFixture<LecHecComponent>;
+describe('FavHecComponent', () => {
+  let component: FavHecComponent;
+  let fixture: ComponentFixture<FavHecComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LecHecComponent]
+      declarations: [FavHecComponent]
     });
-    fixture = TestBed.createComponent(LecHecComponent);
+    fixture = TestBed.createComponent(FavHecComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

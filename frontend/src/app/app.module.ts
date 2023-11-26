@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtModule } from '@auth0/angular-jwt';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -17,7 +18,9 @@ import { HechizosComponent } from './components/hechizos/hechizos.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { TopComponent } from './components/top/top.component';
 import { BottomComponent } from './components/bottom/bottom.component';
-import { LecHecComponent } from './components/lec.hec/lec.hec.component';
+import { FavHecComponent } from './components/fav-hec/fav-hec.component';
+import { addFavHec } from './store/hec.action';
+import { SavedHecReducer } from './store/hec.reducer';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,7 @@ import { LecHecComponent } from './components/lec.hec/lec.hec.component';
     PageNotFoundComponent,
     TopComponent,
     BottomComponent,
-    LecHecComponent
+    FavHecComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { LecHecComponent } from './components/lec.hec/lec.hec.component';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    StoreModule.forRoot({favHec: SavedHecReducer}),
     JwtModule.forRoot({
       config:{
       tokenGetter: () => localStorage.getItem('token')

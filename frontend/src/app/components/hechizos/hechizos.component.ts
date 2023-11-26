@@ -1,8 +1,12 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, CreateEffectOptions, ElementRef, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { HechizosService } from '../../services/hechizos.service';
 import Swal from 'sweetalert2';
+import { Hechizos } from 'src/app/interfaces/schema';
+import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
+import { addFavHec } from 'src/app/store/hec.action';
 
 /* pa usar las funciones pa llamar al backend
 ps llamamos al service que fue donde hicimos esas funciones :)*/
@@ -16,7 +20,8 @@ export class HechizosComponent {
   hecQueEli : string | any;
   constructor(
     public hechizosService: HechizosService,
-    private toastr: ToastrService,) {
+    private toastr: ToastrService,
+    private store: Store<AppState>) {
       this.hecQueEli = '';
       //le damo qui valo a la variable :)
     }
@@ -178,4 +183,15 @@ export class HechizosComponent {
     },
     this.getAllHec()
   } 
+
+  favHec(nombre:string, efecto:string, mortal:boolean, _id?:string){
+    const hec: Hechizos = {
+      nombre:nombre,
+      efecto: efecto,
+      mortal: mortal,
+      _id:_id
+    }
+
+    this.store.dispatch(addFavHec({hec}))
+  }
 }
