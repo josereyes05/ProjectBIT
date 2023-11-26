@@ -16,7 +16,7 @@ export class LoginService {
     /*esta funcion sirve pa hacer la consulta al Backend
     el post es un metodo del http :)
     el user es lo que vamos a recibir del login :)*/
-    return this.http.post<any>('http://18.191.177.104:8080/login/', user);
+    return this.http.post<any>('http://18.222.171.221:8080/login/', user);
   }
 
   isLogged() {
